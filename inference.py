@@ -1,6 +1,7 @@
 from PIL import Image
 from ultralytics import YOLO
 
+
 def get_pill_properties(image: Image, yolo_model: YOLO):
     def calculate_overlap(box1, box2):
         box1 = [float(num) for num in box1]
@@ -46,7 +47,7 @@ def get_pill_properties(image: Image, yolo_model: YOLO):
                 inner_x2 <= outer_x2 and inner_y2 <= outer_y2  # Bottom-right corner inside
         )
 
-    results = yolo_model(image.resize((640, 640)), conf=0.1)
+    results = yolo_model(image)
     result = results[0]
 
     pills = {box: [] for box in result.boxes if result.names[int(box.cls)] == 'Pill'}

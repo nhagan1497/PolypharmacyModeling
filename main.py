@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 def load_model():
-    model = YOLO("test_pill_model.pt")
+    model = YOLO("100_epoch.pt")
     return model
 
 
